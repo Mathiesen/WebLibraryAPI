@@ -40,8 +40,7 @@ steps:
     project: '73a32741-dde0-45b8-a975-1042fcdb2d9c'
     pipeline: '14'
     buildVersionToDownload: 'latest'
-    downloadType: 'single'
-    artifactName: 'WebApp'
+    downloadType: 'specific'
     downloadPath: '$(System.ArtifactsDirectory)'
     cleanDestinationFolder: true
 
