@@ -21,6 +21,14 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      Get-ChildItem -Path $(Build.SourcesDirectory) -Recurse | ForEach-Object {
+        Write-Output $_.FullName
+      }
+
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
