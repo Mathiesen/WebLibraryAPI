@@ -29,6 +29,13 @@ steps:
         Write-Output $_.FullName
       }
 
+      - task: dependency-check-build-task@6
+        inputs:
+          projectName: 'WebLibraryAPI'
+          scanPath: '**/*.csproj'
+          format: 'HTML'
+          failOnCVSS: '8'
+
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
