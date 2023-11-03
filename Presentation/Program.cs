@@ -10,7 +10,6 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
@@ -18,6 +17,8 @@ public class Program
         builder.Services.AddDbContext<LibraryContext>(opts =>
             opts.UseSqlServer("Server=EASV-DB4.easv.dk;Database=TEST_IKM;User Id=ikm;Password=Easv1234;TrustServerCertificate=True;"));
         builder.Services.AddAutoMapper(typeof(Program));
+        builder.Services.AddLogging();
+        builder.Services.AddCors();
         
         // Services
         builder.Services.AddScoped<IBookService, BookService>();
@@ -41,6 +42,10 @@ public class Program
             app.UseSwaggerUI();
         }
 
+        app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod());
         app.UseRouting();
         //app.UseHttpsRedirection();
 
