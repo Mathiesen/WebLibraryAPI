@@ -15,7 +15,7 @@ public class Program
         // Add services to the container.
 
         builder.Services.AddDbContext<LibraryContext>(opts =>
-            opts.UseSqlServer("Server=EASV-DB4.easv.dk;Database=TEST_IKM;User Id=ikm;Password=Easv1234;TrustServerCertificate=True;"));
+            opts.UseSqlServer("Server=;Database=;User Id=;Password=;TrustServerCertificate=True;"));
         builder.Services.AddAutoMapper(typeof(Program));
         builder.Services.AddLogging();
         builder.Services.AddCors();
