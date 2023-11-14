@@ -26,9 +26,6 @@
 
   <ItemGroup>
     <None Remove="Libby.db" />
-    <None Update="MyLibrary.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

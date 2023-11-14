@@ -91,6 +91,7 @@ public class BookController : ControllerBase
     public IActionResult UpdateAvailability(Guid id, [FromBody] BookAvailabilityDto bookAvailabilityDto)
     {
         var book = _bookService.GetBook(id);
+        _logger.Log(LogLevel.Information, bookAvailabilityDto.Available.ToString());
 
         if (book == null)
         {

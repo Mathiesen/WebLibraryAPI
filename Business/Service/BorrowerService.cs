@@ -36,6 +36,11 @@ public class BorrowerService : IBorrowerService
     {
         return _borrowerRepository.UpdateBorrower(id, borrower);
     }
+    
+    public void BorrowBook(Guid borrowerId, Book book)
+    {
+        _borrowerRepository.BorrowBook(borrowerId, book);
+    }
 
     public void DeleteBorrower(Guid id)
     {

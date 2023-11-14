@@ -9,5 +9,7 @@ public class MappingProfile :  Profile
     {
         CreateMap<BookAvailabilityDto, Book>();
         CreateMap<Book, BookAvailabilityDto>();
+        CreateMap<CreateBorrowerDTO, Borrower>();
+        CreateMap<Borrower, CreateBorrowerDTO>();
     }
 }

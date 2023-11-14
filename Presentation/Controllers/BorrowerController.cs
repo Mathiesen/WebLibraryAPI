@@ -1,4 +1,5 @@
-﻿using Business.Service;
+﻿using AutoMapper;
+using Business.Service;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 
@@ -9,10 +10,12 @@ namespace Presentation.Controllers;
 public class BorrowerController : Controller
 {
     private readonly IBorrowerService _borrowerService;
+    private readonly IMapper _mapper;
     
-    public BorrowerController(IBorrowerService borrowerService)
+    public BorrowerController(IBorrowerService borrowerService, IMapper mapper)
     {
         _borrowerService = borrowerService;
+        _mapper = mapper;
     }
     
     [HttpGet]
@@ -35,8 +38,10 @@ public class BorrowerController : Controller
     }
 
     [HttpPost]
-    public IActionResult CreateBorrower([FromBody] Borrower borrower)
+    public IActionResult CreateBorrower([FromBody] CreateBorrowerDTO createBorrowerDto)
     {
+        var borrower = new Borrower();
+        _mapper.Map(createBorrowerDto, borrower);
         var newBorrower = _borrowerService.CreateBorrower(borrower);
         return CreatedAtAction(nameof(GetBorrower), new { id = newBorrower.Id }, newBorrower);
     }
@@ -51,6 +56,18 @@ public class BorrowerController : Controller
 
         var updatedBook = _borrowerService.UpdateBorrower(id, borrower);
         return Ok(updatedBook);
+    }
+    
+    [HttpPut("{borrowerId}/BorrowBook")]
+    public IActionResult BorrowBook(Guid borrowerId, [FromBody] Book book)
+    {
+        if (!_borrowerService.BorrowerExists(borrowerId))
+        {
+            return NotFound();
+        }
+
+        _borrowerService.BorrowBook(borrowerId, book);
+        return Ok();
     }
 
     [HttpDelete("{id}")]

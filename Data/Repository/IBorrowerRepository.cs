@@ -10,4 +10,5 @@ public interface IBorrowerRepository
     bool BorrowerExists(Guid id);
     Borrower UpdateBorrower(Guid id, Borrower borrower);
     void DeleteBorrower(Guid id);
+    void BorrowBook(Guid borrowerId, Book book);
 }
