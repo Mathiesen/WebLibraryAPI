@@ -13,7 +13,6 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-
         builder.Services.AddDbContext<LibraryContext>(opts =>
             opts.UseSqlServer("Server=;Database=;User Id=;Password=;TrustServerCertificate=True;"));
         builder.Services.AddAutoMapper(typeof(Program));
